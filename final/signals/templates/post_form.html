@@ -1,0 +1,46 @@
+{% extends "home.html" %}
+{% block title %}Send Signal{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-lg rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">
+                        {% if form.instance.pk %}✏️ Edit The Post{% else %}📝 Create Post{% endif %}
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Render Django form fields with Bootstrap classes -->
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <div class="form-text">{{ field.help_text }}</div>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{% url 'post_list' %}" class="btn btn-secondary">
+                                ⬅ Back to Post List
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                ✅ Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
