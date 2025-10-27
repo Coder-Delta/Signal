@@ -1,0 +1,11 @@
+{% extends "home.html" %}
+
+{% block title %}Get Started{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center text-white">
+    <h1 class="mb-4">Welcome to Signal!</h1>
+    <p class="lead mb-4">Let's help you get started on your journey with our platform.</p>
+    <a href="{% url 'post_list' %}" class="btn btn-success btn-lg">Start</a>
+</div>
+{% endblock %}

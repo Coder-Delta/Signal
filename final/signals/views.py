@@ -64,3 +64,8 @@ def register(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+def start(request):
+    posts = post.objects.all().order_by('-created_at')[:5]
+    return render(request, 'start.html', {'posts': posts})
